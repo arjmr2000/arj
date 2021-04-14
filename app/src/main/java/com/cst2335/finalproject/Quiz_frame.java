@@ -69,7 +69,7 @@ public class Quiz_frame extends AppCompatActivity {
             dataToPass.putString(OptionB,listItems.get(position).getOptB());
             dataToPass.putString(OptionC,listItems.get(position).getOptC());
             dataToPass.putString(OptionD,listItems.get(position).getOptD());
-                Intent nextActivity = new Intent(Quiz_frame.this, EmptyActivity.class);
+                Intent nextActivity = new Intent(Quiz_frame.this, Quizlayout.class);
                 nextActivity.putExtras(dataToPass); //send data to next activity
                 startActivity(nextActivity); //make the transition
         });
