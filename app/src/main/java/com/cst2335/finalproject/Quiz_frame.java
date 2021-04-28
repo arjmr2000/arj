@@ -1,5 +1,6 @@
 package com.cst2335.finalproject;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -48,6 +50,11 @@ public class Quiz_frame extends AppCompatActivity {
         progressBar = findViewById(R.id.progress);
         progressBar.setVisibility(View.VISIBLE);
         intent=getIntent();
+
+        EditText emailEditText=(EditText)findViewById(R.id.NameTxt) ;
+        String recievedEmail= intent.getStringExtra("NAME");
+        emailEditText.setText(recievedEmail);
+
         Qnumber = intent.getStringExtra("Number");
         type = intent.getStringExtra("Type");
         level = intent.getStringExtra("Level");
@@ -94,6 +101,7 @@ public class Quiz_frame extends AppCompatActivity {
         }
 
 
+        @SuppressLint("ViewHolder")
         public View getView(int position, View old, ViewGroup parent) {
             LayoutInflater inflater = getLayoutInflater();
 
@@ -108,6 +116,7 @@ public class Quiz_frame extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     class TriviaQuiz extends AsyncTask<String,String,String> {
 
         @Override

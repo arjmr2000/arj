@@ -1,6 +1,8 @@
 package com.cst2335.finalproject;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +37,11 @@ public class IndexActivity extends AppCompatActivity {
         hard = (RadioButton)findViewById(R.id.radioHard);
         String Num = Number.getText().toString();
 
+        EditText NameField = (EditText) findViewById(R.id.editTxt10);
+        //  EditText passField=(EditText) findViewById(R.id.editView3);
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String savedString = preferences.getString("Name", "");
+        NameField.setText(savedString);
 
         radioGroup1.setOnCheckedChangeListener((group, checkedId) -> {
             if(trueORfalse.isChecked())
@@ -68,9 +75,22 @@ public class IndexActivity extends AppCompatActivity {
         submitButton.setOnClickListener( c ->{
             Intent goToProfile  = new Intent(IndexActivity.this,Quiz_frame.class);
             goToProfile .putExtra("Number", Number.getText().toString());
+            goToProfile.putExtra("NAME",NameField.getText().toString().trim());
             goToProfile.putExtra("Type",type);
             goToProfile.putExtra("Level",level);
             startActivityForResult( goToProfile,345);
         });
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        EditText NameField = (EditText) findViewById(R.id.editTxt10);
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        String textEmailAddress=NameField.getText().toString().trim();
+        editor.putString("NAME", textEmailAddress);
+        editor.commit();
+        editor.apply();
+
     }
 }

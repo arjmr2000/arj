@@ -18,18 +18,25 @@
         android:id="@+id/R1"
         android:layout_marginTop="30dp"
         >
+        <EditText
+            android:id="@id/NameTxt"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"/>
         <TextView
             android:id="@id/unAnsTxt"
             android:text="UnAnswered : "
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/NameTxt"/>
         <TextView
             android:id="@id/unAnsTxt1"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_toEndOf="@id/unAnsTxt"/>
+            android:layout_toEndOf="@id/unAnsTxt"
+            android:layout_below="@+id/NameTxt"/>
         <TextView
             android:id="@id/AnsTxt"
             android:text="Right    : "
